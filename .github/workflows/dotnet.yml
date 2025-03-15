@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+defaults:
+  run:
+    working-directory: SprintForge
+
 jobs:
   build:
 
@@ -21,8 +25,8 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Restore dependencies
-      run: dotnet SprintForge/SprintForge.sln restore
+      run: dotnet restore
     - name: Build
-      run: dotnet build SprintForge/SprintForge.sln --no-restore
+      run: dotnet build --no-restore
     - name: Test
-      run: dotnet test SprintForge/SprintForge.sln --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal
